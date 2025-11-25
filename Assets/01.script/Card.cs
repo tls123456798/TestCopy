@@ -1,12 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class Card
 {
-    private void OnMouseDown()
+    public string Title => data.name;
+    public string Description => data.Description;
+    public Sprite Image => data.Image;
+    public List<Effect> Effects => data.Effects;
+    public int Mana { get; private set; }
+    private readonly CardData data;
+    public Card(CardData cardData)
     {
-        if (ActionSystem.Instance.IsPerforming) return;
-        DrawCardGA drawCardGA = new();
-        ActionSystem.Instance.Perform(drawCardGA);
-        Destroy(gameObject);
+        data = cardData;
+        Mana = cardData.Mana;
     }
 }
