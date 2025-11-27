@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class CardView : MonoBehaviour
 {
-    [SerializeField] private TMP_Text title; // 카드의 스킬 이름
-    [SerializeField] private TMP_Text description; // 카드 효과 설명 
-    [SerializeField] private TMP_Text mana; // 사용하는 마나(코스트)
-    [SerializeField] private SpriteRenderer imageSR; // 카드의 이미지
+    [SerializeField] private TMP_Text title;
+    [SerializeField] private TMP_Text description;
+    [SerializeField] private TMP_Text mana;
+    [SerializeField] private SpriteRenderer imageSR;
     [SerializeField] private GameObject wrapper;
     [SerializeField] private LayerMask dropLayer;
     public Card Card { get; private set; }

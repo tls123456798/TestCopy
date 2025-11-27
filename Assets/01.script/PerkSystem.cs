@@ -9,12 +9,12 @@ public class PerkSystem : Singleton<PerkSystem>
     {
         perks.Add(perk);
         perksUI.AddPerkUI(perk);
-        perk.onAdd();
+        perk.OnAdd();
     }
     public void RemovePerk(Perk perk)
     {
         perks.Remove(perk);
         perksUI.RemovePerkUI(perk);
-        perk.onRemove();
+        perk.OnRemove();
     }
 }

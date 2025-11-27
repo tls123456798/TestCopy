@@ -13,11 +13,11 @@ public class Perk
         condition = data.PerkCondition;
         effect = data.AutoTargetEffect;
     }
-    public void onAdd()
+    public void OnAdd()
     {
         condition.SubscribeCondition(Reaction);
     }
-    public void onRemove()
+    public void OnRemove()
     {
         condition.UnsubscribeCondition(Reaction);
     }
