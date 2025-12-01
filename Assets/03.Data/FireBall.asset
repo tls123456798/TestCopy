@@ -9,13 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08054076bbc3a44686317eb8f9e8800, type: 3}
-  m_Name: FireBall
+  m_Script: {fileID: 11500000, guid: 40fab880ad3876d438cdd013e075724f, type: 3}
+  m_Name: Fireball
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Deal 4 damage to an enemey.
   <Mana>k__BackingField: 2
   <Image>k__BackingField: {fileID: 21300000, guid: 24f92ac9b09d80b4992c1211e8de43a8, type: 3}
-  <Effects>k__BackingField: []
+  <Effects>k__BackingField:
+  - rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
