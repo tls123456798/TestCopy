@@ -1,12 +1,18 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-public abstract class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
 
     public static T Instance { get; private set; }
-    protected virtual void Awake() => Instance = this as T;
+    protected virtual void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this as T;
+    }
 
     protected virtual void OnApplicationQuit()
     {
@@ -14,17 +20,11 @@ public abstract class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour
         Destroy(gameObject);
     }
 }
-
-public abstract class Singleton<T> : StaticInstance<T> where T : MonoBehaviour
+public abstract class PersistentSingleton<T> : Singleton<T> where T : MonoBehaviour
 {
-
     protected override void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        base.Awake();
+         base.Awake();
+        DontDestroyOnLoad(gameObject);
     }
 }

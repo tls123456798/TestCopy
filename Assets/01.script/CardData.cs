@@ -1,14 +1,9 @@
-using NUnit.Framework;
-using SerializeReferenceEditor;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/Card")]
+[CreateAssetMenu(menuName ="Data/Card")]
 public class CardData : ScriptableObject
 {
-    [field: SerializeField] public string Description { get; private set; }
+    [field: SerializeField] public string Description {  get; private set; }
     [field: SerializeField] public int Mana { get; private set; }
     [field: SerializeField] public Sprite Image { get; private set; }
-    [field: SerializeReference, SR] public Effect MaualTargetEffect { get; private set; } = null;
-    [field: SerializeField] public List<AutoTargetEffect> OtherEffects {  get; private set; }
 }

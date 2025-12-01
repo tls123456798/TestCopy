@@ -2,8 +2,6 @@ using DG.Tweening;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -11,23 +9,10 @@ public class HandView : MonoBehaviour
 {
     [SerializeField] private SplineContainer splineContainer;
     private readonly List<CardView> cards = new();
-
     public IEnumerator AddCard(CardView cardView)
     {
         cards.Add(cardView);
         yield return UpdateCardPositions(0.15f);
-    }
-    public CardView RemoveCard(Card card)
-    {
-        CardView cardView = GetCardView(card);
-        if (cardView == null) return null;
-        cards.Remove(cardView);
-        StartCoroutine(UpdateCardPositions(0.15f));
-        return cardView;
-    }
-    private CardView GetCardView(Card card)
-    {
-        return cards.Where(cardView => cardView.Card == card).FirstOrDefault();
     }
     private IEnumerator UpdateCardPositions(float duration)
     {
@@ -35,7 +20,7 @@ public class HandView : MonoBehaviour
         float cardSpacing = 1f / 10f;
         float firstCardPosition = 0.5f - (cards.Count - 1) * cardSpacing / 2;
         Spline spline = splineContainer.Spline;
-        for (int i = 0; i < cards.Count; i++)
+        for(int i = 0; i < cards.Count; i++)
         {
             float p = firstCardPosition + i * cardSpacing;
             Vector3 splinePosition = spline.EvaluatePosition(p);
