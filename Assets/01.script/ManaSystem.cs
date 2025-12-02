@@ -11,12 +11,14 @@ public class ManaSystem : Singleton<ManaSystem>
     {
         ActionSystem.AttachPerformer<SpendManaGA>(SpendManaPerformer);
         ActionSystem.AttachPerformer<RefillManaGA>(RefillManaPerformer);
+        ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
 
     }
     private void OnDisable()
     {
         ActionSystem.DetachPerformer<SpendManaGA>();
         ActionSystem.DetachPerformer<SpendManaGA>();
+        ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
     }
     public bool HasEnoughMana(int mana)
     {
@@ -34,5 +36,10 @@ public class ManaSystem : Singleton<ManaSystem>
         currentMana = MAX_MANA;
         manaUI.UpdateManaText(currentMana);
         yield return null;
+    }
+    private void EnemyTurnPostReaction(EnemyTurnGA enemyTurnGA)
+    {
+        RefillManaGA refillManaGA = new();
+        ActionSystem.Instance.AddReaction(refillManaGA);
     }
 }
